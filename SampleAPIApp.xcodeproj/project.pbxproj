@@ -36,7 +36,6 @@
 		56D5948215F0E90000A4103C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56D5948115F0E90000A4103C /* SystemConfiguration.framework */; };
 		56D5949D15F11BCA00A4103C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D5949C15F11BCA00A4103C /* LoginViewController.m */; };
 		56D594B815F1423F00A4103C /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56D594B715F1423F00A4103C /* MainViewController.m */; };
-		66DAE46C15F9F377002EB026 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 66DAE46B15F9F377002EB026 /* Three20.bundle */; };
 		66ED700A15F9F99300126C72 /* libextThree20JSON+SBJSON.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3206A0F794A6D7A3F259DBF4 /* libextThree20JSON+SBJSON.a */; };
 		66ED700B15F9F99300126C72 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		66ED700C15F9F99300126C72 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A2827FEC940B25BC42C64 /* libThree20Core.a */; };
@@ -197,7 +196,6 @@
 		56D5949C15F11BCA00A4103C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		56D594B615F1423F00A4103C /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		56D594B715F1423F00A4103C /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		66DAE46B15F9F377002EB026 /* Three20.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = Three20.bundle; path = SampleAPIApp/extern/three20/src/Three20.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -261,7 +259,6 @@
 		5641692815EFA5A000E699B5 = {
 			isa = PBXGroup;
 			children = (
-				66DAE46B15F9F377002EB026 /* Three20.bundle */,
 				5641693D15EFA5A000E699B5 /* SampleAPIApp */,
 				5641693615EFA5A000E699B5 /* Frameworks */,
 				5641693415EFA5A000E699B5 /* Products */,
@@ -519,7 +516,7 @@
 		5648FEA215F7CFC6001457DB /* libextThree20JSON+YAJL.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
-			path = "libextThree20JSON+YAJL.a";
+			path = lib.a;
 			remoteRef = 5648FEA115F7CFC6001457DB /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -537,7 +534,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66DAE46C15F9F377002EB026 /* Three20.bundle in Resources */,
 				5641694215EFA5A000E699B5 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
