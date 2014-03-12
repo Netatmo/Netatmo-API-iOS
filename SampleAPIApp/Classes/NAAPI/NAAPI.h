@@ -67,7 +67,7 @@ typedef enum {
 
 +(NSString*) urlForMethod:(NSString*) method;
 
-+ (NAAPI*) gUserAPI;
++ (NAAPI*) gUserAPI: (NSString*) scope;
 
 +(TTURLRequest*) apiRequestWithMethod:(NSString *)method
                    cacheExpirationAge:(NSTimeInterval) expirationAge

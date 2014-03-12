@@ -27,6 +27,9 @@
 #define kLoginDidSucceedNotification    @"UserLoginDidSucceedNotification"
 #define kLoginDidFailNotification       @"UserLoginDidFailNotification"
 
+@interface NAOAuthUser ()
+@property (nonatomic, readonly) BOOL hasValidScope;
+@end
 
 @implementation NAOAuthUser
 
@@ -40,6 +43,7 @@ NSString *_pwd = nil;
     self = [super init];
     if (self) {
         _state = NAOAuthUserStateAuthorizationNoneNoPwd;
+        _scope = CLIENT_SCOPE;
     }
     
     return self;
@@ -47,12 +51,29 @@ NSString *_pwd = nil;
 
 - (void)dealloc
 {
-    TT_RELEASE_SAFELY(_email);
-    TT_RELEASE_SAFELY(_pwd);
+    NTA_RELEASE_SAFELY(_scope);
+    NTA_RELEASE_SAFELY(_email);
+    NTA_RELEASE_SAFELY(_pwd);
     [super dealloc];
 }
 
 #pragma mark -
+
+
+-(BOOL)hasValidScope
+{
+    if ([_scope isKindOfClass:[NSString class]]) {
+        if ([_scope isEqualToString:NAAPIScopeReadStation]) {
+            return YES;
+        }
+        if ([_scope rangeOfString:NAAPIScopeReadTherm].location != NSNotFound ||
+            [_scope rangeOfString:NAAPIScopeWriteTherm].location != NSNotFound) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 
 NSString *const kUserTokenUrl = @"https://api.netatmo.net/oauth2/token";
@@ -100,6 +121,11 @@ NSString *const kUserTokenUrl = @"https://api.netatmo.net/oauth2/token";
                                      _email, @"username",
                                      _pwd, @"password",
                                      nil];
+            
+            if ([self hasValidScope]) {
+                [request.parameters setValue:_scope forKey:@"scope"];
+            }
+            
             request.response = [[[TTURLJSONResponse alloc] init] autorelease];
             [request setCachePolicy:TTURLRequestCachePolicyNoCache];
             [request setTimeoutInterval:NARequestTimeoutValue];

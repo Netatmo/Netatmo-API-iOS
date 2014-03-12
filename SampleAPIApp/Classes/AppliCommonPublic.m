@@ -78,3 +78,7 @@ const int  NAAPIUnitWindBeaufort = 3;
 const int  NAAPIUnitWindKnot = 4;
 const int  NAAPIRssiThreshold2 = 40;
 const int  NAAPIRadioThreshold0 = 80;
+
+const NSString* const NAAPIScopeReadStation = @"read_station";
+const NSString* const NAAPIScopeReadTherm = @"read_thermostat";
+const NSString* const NAAPIScopeWriteTherm = @"write_thermostat";

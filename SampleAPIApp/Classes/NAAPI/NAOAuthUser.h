@@ -31,6 +31,8 @@ typedef enum {
 {
 @private
     NAOAuthUserState _state;
+    
+    NSString *_scope;
 }
 
 @end

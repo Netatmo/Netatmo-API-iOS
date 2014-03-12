@@ -81,4 +81,8 @@ extern const int NAAPIUnitWindBeaufort;
 extern const int NAAPIUnitWindKnot;
 extern const int NAAPIRssiThreshold2;
 extern const int NAAPIRadioThreshold0;
+
+extern NSString * const NAAPIScopeReadStation;
+extern NSString * const NAAPIScopeReadTherm;
+extern NSString * const NAAPIScopeWriteTherm;
 #endif
