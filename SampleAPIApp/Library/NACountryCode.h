@@ -14,13 +14,4 @@
 // limitations under the License.
 //
 
-
-#import "AFNetworkActivityIndicatorManager.h"
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-
-@end
-
+NSString* getCountryCodeFromSim(void);

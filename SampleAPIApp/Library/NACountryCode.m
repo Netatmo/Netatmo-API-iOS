@@ -14,13 +14,11 @@
 // limitations under the License.
 //
 
+#import "NACountryCode.h"
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import <CoreTelephony/CTTelephonyNetworkInfo.h>
+#import <CoreTelephony/CTCarrier.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-
-@end
-
+NSString* getCountryCodeFromSim(){
+    return [[[[CTTelephonyNetworkInfo alloc] init] subscriberCellularProvider] isoCountryCode];
+}

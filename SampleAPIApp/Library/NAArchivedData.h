@@ -15,12 +15,13 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+@interface NAArchivedData : NSObject
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@property (atomic, readwrite, strong) NSDictionary *data;
 
-@property (strong, nonatomic) UIWindow *window;
+-(id) initWithStorerKey:(NSString*) key;
 
+-(void) logRead:(NSDictionary *)dataRead;
+-(void) logWrite:(NSDictionary *)dataToWrite;
 
 @end
-

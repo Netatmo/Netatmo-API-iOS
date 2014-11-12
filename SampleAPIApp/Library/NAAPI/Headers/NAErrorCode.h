@@ -15,12 +15,17 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "NAJSONResponseSerializer.h"
+#import "AppliCommonPublic.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+extern NSString * const kNAAPIErrorDomain;
 
-@property (strong, nonatomic) UIWindow *window;
+@interface NAErrorCode : NSObject
 
++ (NtmoAPIErrorCode) NAErrorCodeFromNSError:(NSError*)error;
++ (NtmoAPIErrorCode) NAErrorCodeFromNAAPINotificationsUserInfo:(NSDictionary*)userInfo;
++ (NSError *) NSErrorFromNAErrorCode: (NtmoAPIErrorCode)code;
+
++ (NSString*) NAErrorCodeDescription:(NtmoAPIErrorCode)code;
 
 @end
-

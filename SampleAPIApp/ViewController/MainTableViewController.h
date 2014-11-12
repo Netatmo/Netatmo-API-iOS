@@ -15,12 +15,12 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "MainTableViewCell.h"
+#import "DataRetriever.h"
+#import "NADeviceList.h"
+#import "LoginViewController.h"
+#import "NAUser.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface MainTableViewController : UITableViewController <DataRetrieverDelegate>
 
 @end
-

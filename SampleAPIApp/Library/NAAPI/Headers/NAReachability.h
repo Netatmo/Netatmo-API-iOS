@@ -15,12 +15,15 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+@class AFNetworkReachabilityManager;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface NAReachability : NSObject
 
-@property (strong, nonatomic) UIWindow *window;
+@property (nonatomic, readonly, retain) AFNetworkReachabilityManager *apiReachability;
+@property (nonatomic, readonly, retain) AFNetworkReachabilityManager *wifiReachability;
 
++ (NAReachability *)gNAReachability;
+
+-(BOOL) isApiReachable;
 
 @end
-

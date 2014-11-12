@@ -15,12 +15,18 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "AFURLResponseSerialization.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+static NSString * const kNAJSONResponseSerializerResponseBody = @"kNAJSONResponseSerializerResponseBody";
 
-@property (strong, nonatomic) UIWindow *window;
+/**
+ NAJSONResponseSerializer extends AFJSONResponseSerializer.
+ 
+ It aims to add the response body in the NSError object used in return block error.
+ 
+ The response body can be found under the key kNAJSONResponseSerializerResponseBody in the userInfo dictionary of the NSError object.
+ */
 
+@interface NAJSONResponseSerializer : AFJSONResponseSerializer
 
 @end
-

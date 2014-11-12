@@ -15,12 +15,7 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "NAGlobalDefines.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-
-@end
-
+#define NA_DATA_OUTDATED_ABSOLUTE_THRESHOLD                     14400.0f
+#define NA_INDOOR_DATA_OUTDATED_RELATIVE_THRESHOLD              1800.0f

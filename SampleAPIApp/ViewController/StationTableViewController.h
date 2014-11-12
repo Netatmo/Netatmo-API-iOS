@@ -15,12 +15,9 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "NADeviceList.h"
+#import "StationTableViewCell.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface StationTableViewController : UITableViewController
 
 @end
-

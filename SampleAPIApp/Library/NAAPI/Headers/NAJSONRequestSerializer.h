@@ -15,12 +15,14 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "AFURLRequestSerialization.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+/**
+ NAJSONRequestSerializer extends AFJSONRequestSerializer.
+ 
+ It aims to set timeout parameters of requests.
+ */
 
-@property (strong, nonatomic) UIWindow *window;
-
+@interface NAJSONRequestSerializer : AFJSONRequestSerializer
 
 @end
-

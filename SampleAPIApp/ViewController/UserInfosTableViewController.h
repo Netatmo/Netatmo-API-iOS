@@ -14,13 +14,10 @@
 // limitations under the License.
 //
 
+#import "MainTableViewCell.h"
+#import "NAUser.h"
+#import "AppliCommonPublic.h"
 
-#import "AFNetworkActivityIndicatorManager.h"
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface UserInfosTableViewController : UITableViewController
 
 @end
-

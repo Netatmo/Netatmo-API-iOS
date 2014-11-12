@@ -15,12 +15,12 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import <Foundation/Foundation.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface NAMultiKeyArchivedData : NSObject
 
-@property (strong, nonatomic) UIWindow *window;
-
+- (void) logRead:(id)dataRead;
+- (void) logWrite:(id)dataToWrite;
 
 @end
 

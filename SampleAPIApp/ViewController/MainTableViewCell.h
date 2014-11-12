@@ -15,12 +15,10 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface MainTableViewCell : UITableViewCell
+@property (strong, nonatomic, readwrite) IBOutlet UILabel *title;
+@property (strong, nonatomic, readwrite) IBOutlet UILabel *value;
 
 @end
-

@@ -15,12 +15,18 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+/* shared keys - used in several classes*/
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+extern NSString * const kUDCurrentDevice;
+extern NSString * const kUDDeviceList;
+extern NSString * const kUDUser;
+extern NSString * const kUDDeviceListHistory;
 
-@property (strong, nonatomic) UIWindow *window;
 
+/* notifications*/
 
-@end
+extern NSString * const NAUDCurrentDeviceNotification;
+extern NSString * const NAUDDeviceListNotification;
+extern NSString * const NAUDUserNotification;
+
 

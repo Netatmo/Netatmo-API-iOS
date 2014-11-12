@@ -14,13 +14,16 @@
 // limitations under the License.
 //
 
+#import "NAUserDataKeys.h"
 
-#import "AFNetworkActivityIndicatorManager.h"
+/* shared keys*/
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+NSString * const kUDCurrentDevice   = @"UDCurrentDeviceKey";
+NSString * const kUDDeviceList      = @"UDDeviceListKey";
+NSString * const kUDUser            = @"UDUserKey";
+NSString * const kUDDeviceListHistory  = @"UDDeviceListHistory";
 
-@property (strong, nonatomic) UIWindow *window;
-
-
-@end
-
+/*notification Name*/
+NSString * const NAUDCurrentDeviceNotification = @"NAUDCurrentDeviceNotificationName";
+NSString * const NAUDDeviceListNotification = @"NAUDDeviceListNotificationName";
+NSString * const NAUDUserNotification = @"NAUDUserNotificationName";

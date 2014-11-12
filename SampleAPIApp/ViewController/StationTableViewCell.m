@@ -14,13 +14,18 @@
 // limitations under the License.
 //
 
+#import "StationTableViewCell.h"
 
-#import "AFNetworkActivityIndicatorManager.h"
+@implementation StationTableViewCell
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+- (void)awakeFromNib {
+    // Initialization code
+}
 
-@property (strong, nonatomic) UIWindow *window;
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
 
+    // Configure the view for the selected state
+}
 
 @end
-

@@ -15,12 +15,18 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "MainTableViewCell.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@implementation MainTableViewCell
 
-@property (strong, nonatomic) UIWindow *window;
+- (void)awakeFromNib {
+    // Initialization code
+}
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
 
 @end
-

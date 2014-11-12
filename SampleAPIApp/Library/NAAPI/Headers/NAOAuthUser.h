@@ -15,12 +15,20 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "NAOAuth.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+typedef enum
+{
+    NAOAuthUserStateAuthorizationNoneNoPwd,         // No refresh token no password
+    NAOAuthUserStateAuthorizationNoneKnownPwd,      // No refresh token but password
+    NAOAuthUserStateAuthorizationGranted,           // Refresh token
+    NAOAuthUserStateAccessGranted                   // Access token
+} NAOAuthUserState;
 
+
+@interface NAOAuthUser : NAOAuth
 
 @end
+
 

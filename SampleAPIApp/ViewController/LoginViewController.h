@@ -15,12 +15,11 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "NAAPI.h"
+#import "AppliCommonPublic.h"
+#import "MainTableViewController.h"
+#import "NAUser.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface LoginViewController : UIViewController <NAAPILogInObserverProtocol, UITextFieldDelegate>
 
 @end
-

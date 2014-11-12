@@ -15,12 +15,31 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "NAArchivedData.h"
+#import "NAUserDataKeys.h"
+#import "NAAPI.h"
+#import "AppliCommonPrivate.h"
+#import "NADeviceList.h"
+#import "NACountryCode.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@interface NAUser : NAArchivedData
+
+-(NSString *)countryCode;
+-(NSString *)userId;
 
 
++ (instancetype) globalUser;
+
+- (void) setValue:(NSDictionary*) dataDict;
+- (void) reset;
+
+- (BOOL) isLoggedIn;
+
+- (int)unitSystem;
+- (int)windUnitSystem;
+- (int)pressureUnitSystem;
+
+
+- (void) deleteAllUserData;
 @end
-

@@ -14,13 +14,25 @@
 // limitations under the License.
 //
 
-
-#import "AFNetworkActivityIndicatorManager.h"
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
+#ifndef NAAPI_NAAPIFlags_h
+#define NAAPI_NAAPIFlags_h
 
 
-@end
+#define AF_LOGGER_ENABLE                0
 
+/**
+ You can use the folowing log level. See AFNetworkingActivityLogger.h for more information.
+ 
+AFLoggerLevelOff,
+AFLoggerLevelDebug,
+AFLoggerLevelInfo,
+AFLoggerLevelWarn,
+AFLoggerLevelError,
+AFLoggerLevelFatal = AFLoggerLevelOff,
+*/
+
+#if AF_LOGGER_ENABLE
+#define AF_LOGGER_LEVEL AFLoggerLevelDebug
+#endif
+
+#endif

@@ -15,12 +15,12 @@
 //
 
 
-#import "AFNetworkActivityIndicatorManager.h"
+#import "AFOAuth2Client.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-
+/**
+ NAOAuth2Client extends AFOAuth2Client.
+ 
+ It aims to use the NAJSONResponseSerializer which is not used by default.
+ */
+@interface NAOAuth2Client : AFOAuth2Client
 @end
-
