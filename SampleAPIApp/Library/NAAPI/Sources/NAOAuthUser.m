@@ -19,7 +19,7 @@
 #import "NAErrorCode.h"
 
 
-NSString * const NAUserAPITokenUrl = @"https://app.netatmo.net/oauth2/token";
+NSString * const NAUserAPITokenUrl = @"https://api.netatmo.net/oauth2/token";
 
 NSString * const NAUserAPILoginDidSucceedNotification   = @"NAUserAPILoginDidSucceedNotification";
 NSString * const NAUserAPILoginDidFailNotification      = @"NAUserAPILoginDidFailNotification";

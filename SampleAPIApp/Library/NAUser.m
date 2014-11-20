@@ -58,15 +58,6 @@
     return [self.data valueForKey:@"mail"];
 }
 
--(BOOL)isPublicUser
-{
-    if ([[self mail] isKindOfClass:[NSString class]])
-    {
-        return ([[self mail] isEqualToString:NAAPIPublicUserUserMail]);
-    }
-    
-    return NO;
-}
 
 #pragma mark - own public
 
@@ -109,64 +100,45 @@
 
 - (int)unitSystem
 {
-    if ([self isPublicUser]) {
-        if ([[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue]) {
-            return NAAPIUnitMetric;
-        } else {
-            return NAAPIUnitUs;
-        }
+    
+    NSNumber *unitSystemValue = [[self administrative] objectForKey: @"unit"];
+    if ([unitSystemValue isKindOfClass:[NSNumber class]]) {
+        return [unitSystemValue intValue];
     } else {
-        NSNumber *unitSystemValue = [[self administrative] objectForKey: @"unit"];
-        if ([unitSystemValue isKindOfClass:[NSNumber class]]) {
-            return [unitSystemValue intValue];
-        } else {
-            return NAAPIUnitMetric;
-        }
+        return NAAPIUnitMetric;
     }
+    
 }
 
 - (int)windUnitSystem
 {
-    if ([self isPublicUser]) {
-        if ([[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue]) {
-            return NAAPIUnitWindKmh;
-        } else {
-            return NAAPIUnitWindMph;
-        }
+    
+    NSNumber *windUnitValue = [[self administrative] objectForKey: @"windunit"];
+    if ([windUnitValue isKindOfClass:[NSNumber class]]) {
+        return [windUnitValue intValue];
     } else {
-        NSNumber *windUnitValue = [[self administrative] objectForKey: @"windunit"];
-        if ([windUnitValue isKindOfClass:[NSNumber class]]) {
-            return [windUnitValue intValue];
+        if (NAAPIUnitUs == [self unitSystem]) {
+            return NAAPIUnitWindMph;
         } else {
-            if (NAAPIUnitUs == [self unitSystem]) {
-                return NAAPIUnitWindMph;
-            } else {
-                return NAAPIUnitWindKmh;
-            }
+            return NAAPIUnitWindKmh;
         }
     }
 }
 
 - (int)pressureUnitSystem
 {
-    if ([self isPublicUser]) {
-        if ([[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue]) {
-            return NAAPIUnitPressureMbar;
-        } else {
-            return NAAPIUnitPressureMercury;
-        }
+    
+    NSNumber *pressureUnitValue = [[self administrative] objectForKey: @"pressureunit"];
+    if ([pressureUnitValue isKindOfClass:[NSNumber class]]) {
+        return [pressureUnitValue intValue];
     } else {
-        NSNumber *pressureUnitValue = [[self administrative] objectForKey: @"pressureunit"];
-        if ([pressureUnitValue isKindOfClass:[NSNumber class]]) {
-            return [pressureUnitValue intValue];
+        if (NAAPIUnitUs == [self unitSystem]) {
+            return NAAPIUnitPressureMercury;
         } else {
-            if (NAAPIUnitUs == [self unitSystem]) {
-                return NAAPIUnitPressureMercury;
-            } else {
-                return NAAPIUnitPressureMbar;
-            }
+            return NAAPIUnitPressureMbar;
         }
     }
+    
 }
 
 

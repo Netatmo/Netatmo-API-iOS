@@ -39,6 +39,5 @@ extern NSString * const NAAPINoise;
 extern NSString * const NAAPIRecordUpgrading;
 extern NSString * const NAAPIHumidity;
 extern NSString * const NAAPIAlarmModuleId;
-extern NSString * const NAAPIPublicUserUserMail;
 
 #endif

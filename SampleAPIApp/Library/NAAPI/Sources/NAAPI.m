@@ -24,7 +24,7 @@
 #import "AFNetworkActivityLogger.h"
 
 
-NSString * const kWSUrl      = @"https://app.netatmo.net/";
+NSString * const kWSUrl      = @"https://api.netatmo.net/";
 
 static NAAPI * sSharedUserInstance = nil;
 
