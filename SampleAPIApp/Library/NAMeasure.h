@@ -43,6 +43,8 @@ typedef enum {
     NAMeasureTypeRainDay,
     NAMeasureTypeRainPerHour,
 
+    NAMeasureTypeWindAngle,
+    NAMeasureTypeWindStrength,
     
     NAMeasureTypeUnknown = -1,
 } NAMeasureType;

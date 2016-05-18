@@ -47,6 +47,10 @@
 #define MEASURE_INDEX_PLUVIO_RAIN_SUM1              0
 #define MEASURE_INDEX_PLUVIO_RAIN_SUM24             1
 
+#define ANEMO_MEASURES_COUNT                       2
+#define MEASURE_INDEX_ANEMO_WIND_ANGLE             0
+#define MEASURE_INDEX_ANEMO_WIND_STRENGTH          1
+
 
 @interface MainTableViewController ()
 
@@ -61,8 +65,13 @@
 @property (nonatomic, strong, readwrite) NSString *titlePluvioSumRain1;
 @property (nonatomic, strong, readwrite) NSString *titlePluvioSumRain24;
 
+@property (nonatomic, strong, readwrite) NSString *titleAnemoWindAngle;
+@property (nonatomic, strong, readwrite) NSString *titleAnemoWindStrength;
+
 @property (nonatomic, strong, readwrite) NSString *indoorModuleType;
 @property (nonatomic, strong, readwrite) NSString *outdoorModuleType;
+@property (nonatomic, strong, readwrite) NSString *pluvioModuleType;
+@property (nonatomic, strong, readwrite) NSString *anemoModuleType;
 
 @property (nonatomic, strong, readwrite) NSString *cellIdentifier;
 
@@ -90,6 +99,8 @@
     
     self.indoorModuleType =     @"NAModule4";
     self.outdoorModuleType =    @"NAModule1";
+    self.pluvioModuleType = @"NAModule3";
+    self.anemoModuleType = @"NAModule2";
     
     // Graphics
     self.titleTemperature =     @"Temperature";
@@ -102,7 +113,10 @@
     
     self.titlePluvioSumRain1 =  @"Rain last hour";
     self.titlePluvioSumRain24 = @"Rain today";
-    
+
+    self.titleAnemoWindAngle =    @"Wind angle";
+    self.titleAnemoWindStrength = @"Wind strength";
+
     self.tableView.rowHeight = 44;
 }
 
@@ -260,12 +274,16 @@ titleForHeaderInSection: (NSInteger)section
     {
         return [@"Outdoor Module" stringByAppendingString:nameForModule];
     }
-    else
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.pluvioModuleType])
     {
         return [@"Pluvio Module" stringByAppendingString:nameForModule];
     }
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.anemoModuleType])
+    {
+        return [@"Anémo Module" stringByAppendingString:nameForModule];
+    }
     
-    
+    return nameForModule;
 }
 
 - (NSInteger)tableView: (UITableView *)tableView
@@ -292,10 +310,16 @@ titleForHeaderInSection: (NSInteger)section
     {
         return OUTDOOR_MEASURES_COUNT;
     }
-    else
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.pluvioModuleType])
     {
         return PLUVIO_MEASURES_COUNT;
     }
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.anemoModuleType])
+    {
+        return ANEMO_MEASURES_COUNT;
+    }
+
+    return 0;
 }
 
 - (MainTableViewCell *)tableView: (UITableView *)tableView
@@ -546,7 +570,7 @@ titleForHeaderInSection: (NSInteger)section
                 }
             }
         }
-        else
+        else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.pluvioModuleType])
         {
             if (indexPath.row == MEASURE_INDEX_PLUVIO_RAIN_SUM1)
             {
@@ -575,9 +599,102 @@ titleForHeaderInSection: (NSInteger)section
                 }
             }
         }
-        
+        else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.anemoModuleType])
+        {
+            if (indexPath.row == MEASURE_INDEX_ANEMO_WIND_ANGLE)
+            {
+                cell.title.text = self.titleAnemoWindAngle;
+                if ([[DataRetriever valueForType:NAMeasureTypeWindAngle inDictionary:data] isKindOfClass:[NSNumber class]] && dataReliableForModule)
+                {
+                    float angle = [[DataRetriever valueForType:NAMeasureTypeWindAngle inDictionary:data] floatValue];
+                    NSString *direction = [NSString new];
+                    if ((angle > -11.25 && angle <= 11.25) || (angle > 348.75 && angle <= 371.25))
+                    {
+                        direction = [direction stringByAppendingString:@"N"];
+                    }
+                    else if (angle > 11.25 && angle <= 33.75)
+                    {
+                        direction = [direction stringByAppendingString:@"NNE"];
+                    }
+                    else if (angle > 33.75 && angle <= 56.25)
+                    {
+                        direction = [direction stringByAppendingString:@"NE"];
+                    }
+                    else if (angle > 56.25 && angle <= 78.75)
+                    {
+                        direction = [direction stringByAppendingString:@"ENE"];
+                    }
+                    else if (angle > 78.75 && angle <= 101.25)
+                    {
+                        direction = [direction stringByAppendingString:@"E"];
+                    }
+                    else if (angle > 101.25 && angle <= 123.75)
+                    {
+                        direction = [direction stringByAppendingString:@"ESE"];
+                    }
+                    else if (angle > 123.75 && angle <= 146.25)
+                    {
+                        direction = [direction stringByAppendingString:@"SE"];
+                    }
+                    else if (angle > 146.25 && angle <= 168.75)
+                    {
+                        direction = [direction stringByAppendingString:@"SSE"];
+                    }
+                    else if (angle > 168.75 && angle <= 191.25)
+                    {
+                        direction = [direction stringByAppendingString:@"S"];
+                    }
+                    else if (angle > 191.25 && angle <= 213.75)
+                    {
+                        direction = [direction stringByAppendingString:@"SSW"];
+                    }
+                    else if (angle > 213.75 && angle <= 236.25)
+                    {
+                        direction = [direction stringByAppendingString:@"SW"];
+                    }
+                    else if (angle > 236.25 && angle <= 258.75)
+                    {
+                        direction = [direction stringByAppendingString:@"WSW"];
+                    }
+                    else if (angle > 258.75 && angle <= 281.25)
+                    {
+                        direction = [direction stringByAppendingString:@"W"];
+                    }
+                    else if (angle > 281.25 && angle <= 303.75)
+                    {
+                        direction = [direction stringByAppendingString:@"WNW"];
+                    }
+                    else if (angle > 303.75 && angle <= 326.25)
+                    {
+                        direction = [direction stringByAppendingString:@"NW"];
+                    }
+                    else if (angle > 326.25 && angle <= 348.75)
+                    {
+                        direction = [direction stringByAppendingString:@"NNW"];
+                    }
+                    cell.value.text = direction;
+                }
+                else
+                {
+                    cell.value.text = @"--";
+                }
+            }
+            else if (indexPath.row == MEASURE_INDEX_ANEMO_WIND_STRENGTH)
+            {
+                cell.title.text = self.titleAnemoWindStrength;
+                if ([[DataRetriever valueForType:NAMeasureTypeWindStrength inDictionary:data] isKindOfClass:[NSNumber class]] && dataReliableForModule)
+                {
+                    cell.value.text = [[NSString alloc] initWithFormat:@"%@", [DataRetriever valueForType:NAMeasureTypeWindStrength inDictionary:data]];
+                    cell.value.text = [cell.value.text stringByAppendingString:@"km/h"];
+                }
+                else
+                {
+                    cell.value.text = @"--";
+                }
+            }
+        }
     }
-    
+
     
     return cell;
 }
