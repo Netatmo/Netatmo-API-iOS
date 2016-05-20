@@ -606,73 +606,8 @@ titleForHeaderInSection: (NSInteger)section
                 cell.title.text = self.titleAnemoWindAngle;
                 if ([[DataRetriever valueForType:NAMeasureTypeWindAngle inDictionary:data] isKindOfClass:[NSNumber class]] && dataReliableForModule)
                 {
-                    float angle = [[DataRetriever valueForType:NAMeasureTypeWindAngle inDictionary:data] floatValue];
-                    NSString *direction = [NSString new];
-                    if ((angle > -11.25 && angle <= 11.25) || (angle > 348.75 && angle <= 371.25))
-                    {
-                        direction = [direction stringByAppendingString:@"N"];
-                    }
-                    else if (angle > 11.25 && angle <= 33.75)
-                    {
-                        direction = [direction stringByAppendingString:@"NNE"];
-                    }
-                    else if (angle > 33.75 && angle <= 56.25)
-                    {
-                        direction = [direction stringByAppendingString:@"NE"];
-                    }
-                    else if (angle > 56.25 && angle <= 78.75)
-                    {
-                        direction = [direction stringByAppendingString:@"ENE"];
-                    }
-                    else if (angle > 78.75 && angle <= 101.25)
-                    {
-                        direction = [direction stringByAppendingString:@"E"];
-                    }
-                    else if (angle > 101.25 && angle <= 123.75)
-                    {
-                        direction = [direction stringByAppendingString:@"ESE"];
-                    }
-                    else if (angle > 123.75 && angle <= 146.25)
-                    {
-                        direction = [direction stringByAppendingString:@"SE"];
-                    }
-                    else if (angle > 146.25 && angle <= 168.75)
-                    {
-                        direction = [direction stringByAppendingString:@"SSE"];
-                    }
-                    else if (angle > 168.75 && angle <= 191.25)
-                    {
-                        direction = [direction stringByAppendingString:@"S"];
-                    }
-                    else if (angle > 191.25 && angle <= 213.75)
-                    {
-                        direction = [direction stringByAppendingString:@"SSW"];
-                    }
-                    else if (angle > 213.75 && angle <= 236.25)
-                    {
-                        direction = [direction stringByAppendingString:@"SW"];
-                    }
-                    else if (angle > 236.25 && angle <= 258.75)
-                    {
-                        direction = [direction stringByAppendingString:@"WSW"];
-                    }
-                    else if (angle > 258.75 && angle <= 281.25)
-                    {
-                        direction = [direction stringByAppendingString:@"W"];
-                    }
-                    else if (angle > 281.25 && angle <= 303.75)
-                    {
-                        direction = [direction stringByAppendingString:@"WNW"];
-                    }
-                    else if (angle > 303.75 && angle <= 326.25)
-                    {
-                        direction = [direction stringByAppendingString:@"NW"];
-                    }
-                    else if (angle > 326.25 && angle <= 348.75)
-                    {
-                        direction = [direction stringByAppendingString:@"NNW"];
-                    }
-                    cell.value.text = direction;
+                    cell.value.text = [[NSString alloc] initWithFormat:@"%@", [DataRetriever valueForType:NAMeasureTypeWindAngle inDictionary:data]];
+                    cell.value.text = [cell.value.text stringByAppendingString:@"˚"];
                 }
                 else
                 {
