@@ -1,7 +1,7 @@
 Weather Station Sample App - iOS
 ========
 
-Sample application that implements the Netatmo API available here: http://dev.netatmo.com/doc/
+Sample application that implements the Netatmo API available here: https://dev.netatmo.com/dev/resources#/technical/introduction
 
 It contains two packages:
  * [__Library__][1]: Classes to get you started with our API including a http client and some parsing utilities. This implementation provides tools to get the last measurements for a given device.
