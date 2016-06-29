@@ -47,6 +47,10 @@
 #define MEASURE_INDEX_PLUVIO_RAIN_SUM1              0
 #define MEASURE_INDEX_PLUVIO_RAIN_SUM24             1
 
+#define ANEMO_MEASURES_COUNT                       2
+#define MEASURE_INDEX_ANEMO_WIND_ANGLE             0
+#define MEASURE_INDEX_ANEMO_WIND_STRENGTH          1
+
 
 @interface MainTableViewController ()
 
@@ -61,8 +65,13 @@
 @property (nonatomic, strong, readwrite) NSString *titlePluvioSumRain1;
 @property (nonatomic, strong, readwrite) NSString *titlePluvioSumRain24;
 
+@property (nonatomic, strong, readwrite) NSString *titleAnemoWindAngle;
+@property (nonatomic, strong, readwrite) NSString *titleAnemoWindStrength;
+
 @property (nonatomic, strong, readwrite) NSString *indoorModuleType;
 @property (nonatomic, strong, readwrite) NSString *outdoorModuleType;
+@property (nonatomic, strong, readwrite) NSString *pluvioModuleType;
+@property (nonatomic, strong, readwrite) NSString *anemoModuleType;
 
 @property (nonatomic, strong, readwrite) NSString *cellIdentifier;
 
@@ -90,6 +99,8 @@
     
     self.indoorModuleType =     @"NAModule4";
     self.outdoorModuleType =    @"NAModule1";
+    self.pluvioModuleType = @"NAModule3";
+    self.anemoModuleType = @"NAModule2";
     
     // Graphics
     self.titleTemperature =     @"Temperature";
@@ -102,7 +113,10 @@
     
     self.titlePluvioSumRain1 =  @"Rain last hour";
     self.titlePluvioSumRain24 = @"Rain today";
-    
+
+    self.titleAnemoWindAngle =    @"Wind angle";
+    self.titleAnemoWindStrength = @"Wind strength";
+
     self.tableView.rowHeight = 44;
 }
 
@@ -260,12 +274,16 @@ titleForHeaderInSection: (NSInteger)section
     {
         return [@"Outdoor Module" stringByAppendingString:nameForModule];
     }
-    else
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.pluvioModuleType])
     {
         return [@"Pluvio Module" stringByAppendingString:nameForModule];
     }
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.anemoModuleType])
+    {
+        return [@"Anémo Module" stringByAppendingString:nameForModule];
+    }
     
-    
+    return nameForModule;
 }
 
 - (NSInteger)tableView: (UITableView *)tableView
@@ -292,10 +310,16 @@ titleForHeaderInSection: (NSInteger)section
     {
         return OUTDOOR_MEASURES_COUNT;
     }
-    else
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.pluvioModuleType])
     {
         return PLUVIO_MEASURES_COUNT;
     }
+    else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.anemoModuleType])
+    {
+        return ANEMO_MEASURES_COUNT;
+    }
+
+    return 0;
 }
 
 - (MainTableViewCell *)tableView: (UITableView *)tableView
@@ -546,7 +570,7 @@ titleForHeaderInSection: (NSInteger)section
                 }
             }
         }
-        else
+        else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.pluvioModuleType])
         {
             if (indexPath.row == MEASURE_INDEX_PLUVIO_RAIN_SUM1)
             {
@@ -575,9 +599,37 @@ titleForHeaderInSection: (NSInteger)section
                 }
             }
         }
-        
+        else if ([[[NADeviceList gDeviceList] typeForModule:deviceId] isEqual:self.anemoModuleType])
+        {
+            if (indexPath.row == MEASURE_INDEX_ANEMO_WIND_ANGLE)
+            {
+                cell.title.text = self.titleAnemoWindAngle;
+                if ([[DataRetriever valueForType:NAMeasureTypeWindAngle inDictionary:data] isKindOfClass:[NSNumber class]] && dataReliableForModule)
+                {
+                    cell.value.text = [[NSString alloc] initWithFormat:@"%@", [DataRetriever valueForType:NAMeasureTypeWindAngle inDictionary:data]];
+                    cell.value.text = [cell.value.text stringByAppendingString:@"˚"];
+                }
+                else
+                {
+                    cell.value.text = @"--";
+                }
+            }
+            else if (indexPath.row == MEASURE_INDEX_ANEMO_WIND_STRENGTH)
+            {
+                cell.title.text = self.titleAnemoWindStrength;
+                if ([[DataRetriever valueForType:NAMeasureTypeWindStrength inDictionary:data] isKindOfClass:[NSNumber class]] && dataReliableForModule)
+                {
+                    cell.value.text = [[NSString alloc] initWithFormat:@"%@", [DataRetriever valueForType:NAMeasureTypeWindStrength inDictionary:data]];
+                    cell.value.text = [cell.value.text stringByAppendingString:@"km/h"];
+                }
+                else
+                {
+                    cell.value.text = @"--";
+                }
+            }
+        }
     }
-    
+
     
     return cell;
 }

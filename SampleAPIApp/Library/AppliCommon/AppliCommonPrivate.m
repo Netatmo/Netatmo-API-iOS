@@ -37,3 +37,6 @@ const NSString* const NAAPIAppType = @"app_type";
 const NSString* const NAAPIPressure = @"e";
 const NSString* const NAAPICo2StatusCalibrating = @"co2_calibrating";
 const NSString* const NAAPIAlarmModuleId = @"module_id";
+
+const NSString* const NAAPIWindAngle = @"WindAngle";
+const NSString* const NAAPIWindStrength = @"WindStrength";

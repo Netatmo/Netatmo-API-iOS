@@ -162,7 +162,8 @@
     NSString* moduleTypeInterieur 			= @"NAModule4";
     NSString* moduleTypeExterieur 			= @"NAModule1";
     NSString* moduleTypeExterieurPluvmtr 	= @"NAModule3";
-    
+    NSString* moduleTypeExterieurAnemomtr 	= @"NAModule2";
+
     
     for( NSDictionary *module in [[NADeviceList gDeviceList] moduleList] )
     {
@@ -233,13 +234,25 @@
             }
             else if ( [moduleTypeExterieurPluvmtr isEqual:moduleType ] ) /* ext module pluvio */
             {
-                
                 NSNumber* sumRain1     = [ dashboard_data objectForKey: NAAPISumRain1];
                 NSNumber* sumRain24    = [ dashboard_data objectForKey: NAAPISumRain24 ];
                 
                 [DataRetriever setValue: sumRain1 forType: NAMeasureTypeRainPerHour   inDictionary:dataToCache];
                 [DataRetriever setValue: sumRain24 forType: NAMeasureTypeRainDay   inDictionary:dataToCache];
                 
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    /* Update Application Cache */
+                    successCompletion(moduleMac, dataToCache);
+                });
+            }
+            else if ( [moduleTypeExterieurAnemomtr isEqual:moduleType ] ) /* ext module anemo */
+            {
+                NSNumber* windAngle = [dashboard_data objectForKey: NAAPIWindAngle];
+                NSNumber* windStrength = [dashboard_data objectForKey: NAAPIWindStrength];
+
+                [DataRetriever setValue: windAngle forType: NAMeasureTypeWindAngle inDictionary:dataToCache];
+                [DataRetriever setValue: windStrength forType: NAMeasureTypeWindStrength inDictionary:dataToCache];
+
                 dispatch_async(dispatch_get_main_queue(), ^{
                     /* Update Application Cache */
                     successCompletion(moduleMac, dataToCache);

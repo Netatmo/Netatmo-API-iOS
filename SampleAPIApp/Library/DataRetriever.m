@@ -295,7 +295,32 @@
                           forKey: NAAPINoise];
             break;
         }
-            
+        case NAMeasureTypeRainPerHour:
+        {
+            [dictionary setValue: value
+                          forKey: NAAPISumRain1];
+            break;
+        }
+        case NAMeasureTypeRainDay:
+        {
+            [dictionary setValue: value
+                          forKey: NAAPISumRain24];
+            break;
+        }
+        case NAMeasureTypeWindAngle:
+        {
+            [dictionary setValue: value
+                          forKey: NAAPIWindAngle];
+            break;
+        }
+        case NAMeasureTypeWindStrength:
+        {
+            [dictionary setValue: value
+                          forKey: NAAPIWindStrength];
+            break;
+        }
+
+
         case NAMeasureTypeUnknown:
         default:
             break;
@@ -352,7 +377,28 @@
             value = [dictionary valueForKey: NAAPINoise];
             break;
         }
-            
+
+        case NAMeasureTypeRainPerHour:
+        {
+            value = [dictionary valueForKey: NAAPISumRain1];
+            break;
+        }
+        case NAMeasureTypeRainDay:
+        {
+            value = [dictionary valueForKey: NAAPISumRain24];
+            break;
+        }
+        case NAMeasureTypeWindAngle:
+        {
+            value = [dictionary valueForKey: NAAPIWindAngle];
+            break;
+        }
+        case NAMeasureTypeWindStrength:
+        {
+            value = [dictionary valueForKey: NAAPIWindStrength];
+            break;
+        }
+
         case NAMeasureTypeUnknown:
         default:
             //Not supposed to be in data handler dictionaries

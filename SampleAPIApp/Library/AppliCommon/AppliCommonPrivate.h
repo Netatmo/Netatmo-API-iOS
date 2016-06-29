@@ -40,4 +40,7 @@ extern NSString * const NAAPIRecordUpgrading;
 extern NSString * const NAAPIHumidity;
 extern NSString * const NAAPIAlarmModuleId;
 
+extern NSString* const NAAPIWindAngle;
+extern NSString* const NAAPIWindStrength;
+
 #endif
